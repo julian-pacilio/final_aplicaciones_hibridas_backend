@@ -3,6 +3,7 @@ import express from "express";
 import GamesController from "../controllers/games.js";
 import GameVotesController from "../controllers/gamesVotes.js";
 import AccountsController from "../controllers/accounts.js";
+import UploadsController from "../controllers/uploads.js"; 
 
 import {
   validateGameCreate,
@@ -23,6 +24,7 @@ import {
 } from "../middleware/accounts.js";
 
 import { verifySession } from "../middleware/accounts.js";
+import { uploadImage, processImage } from "../middleware/uploads.js"; // 
 
 const route = express.Router();
 
@@ -33,7 +35,7 @@ route
 
 route
   .route("/games/:idGame")
-  .get([validateGameIdExists],GamesController.getGameById)
+  .get([],GamesController.getGameById)
   .patch([verifySession, validateGameIdExists], GamesController.editGame)
   .delete([verifySession, validateGameIdExists], GamesController.deleteGame);
 
@@ -45,7 +47,7 @@ route.route("/games/edition/:edition").get(GamesController.getGamesByEdition);
 
 route
   .route("/games/:idGame/votes")
-  .get([validateGameIdExists], GameVotesController.getVotesByGame)
+  .get([], GameVotesController.getVotesByGame)
   .post(
     [
       verifySession,
@@ -60,7 +62,7 @@ route.route("/judges/:idJudge/votes").get(GameVotesController.getVotesByJudge);
 
 // Register
 route
-  .route("/api/account")
+  .route("/auth/account")
   .post(
     [validateAccountCreate, validateEmailIsNotRegistered],
     AccountsController.createAccount
@@ -68,11 +70,16 @@ route
 
 // Login
 route
-  .route("/api/session")
+  .route("/auth/session")
   .post(
     [validateAccountLogin, validateEmailIsRegistered],
     AccountsController.login
   )
   .delete([verifySession], AccountsController.logout);
+
+  // Uploads
+route
+  .route("/uploads")
+  .post([verifySession, uploadImage, processImage], UploadsController.uploadFile);
 
 export default route;
