@@ -22,7 +22,7 @@ async function createAccount(account) {
     surname: account.surname,
     email: account.email,
     password: await passwordHash(account.password),
-    rol: "user",
+    role: "user",
   };
 
   await AccountsCollection.insertOne(newAccount);
@@ -36,8 +36,9 @@ async function createAccount(account) {
  */
 async function createSession(account) {
   return {
-    account: await verifyAccount(account),
+    ...await verifyAccount(account),
     token: await createToken({ ...account, password: undefined }),
+    message: "Sesión iniciada con éxito",
   };
 }
 

@@ -20,7 +20,7 @@ async function login(req, res) {
     })
     .catch(function (err) {
       res.status(500).json({
-        message: `Error al iniciar sesión`,
+        message: err.message,
         error: err,
       });
     });
@@ -29,7 +29,7 @@ async function login(req, res) {
 async function logout(req, res) {
   return AccountsService.deleteSession(req.token)
     .then(function () {
-      res.status(200).json({ message: `Sesión cerrada con éxito`,});
+      res.status(200).json({ message: `Sesión cerrada con éxito` });
     })
     .catch(function (err) {
       res.status(404).json({

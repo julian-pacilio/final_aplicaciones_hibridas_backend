@@ -7,7 +7,8 @@ function getAllGames(req, res) {
     })
     .catch(function (err) {
       res.status(404).json({ 
-        message: `No se encuentran los juegos`, error: err 
+        message: `No se encuentran los juegos`, 
+        error: err 
       });
     });
 }

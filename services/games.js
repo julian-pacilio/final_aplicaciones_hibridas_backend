@@ -4,6 +4,7 @@ const GamesCollection = db.collection("games");
 
 import GamesVotesService from "../services/gamesVotes.js";
 import filterQueryToMongo from "../helpers/filterQuery.js";
+import deleteImageFile from "../helpers/images.js";
 
 /**
  * Obtiene todos los documentos pertenecientes a la collección "games" aplicando un filtro
@@ -51,7 +52,7 @@ async function getGameByIdAndAverageVotes(id) {
 
   const votes = await GamesVotesService.findVotesByGame(id);
 
-  let requested_data = [];
+  //let requested_data = [];
 
   let averageScores = {
     gameplay: 0,
@@ -81,9 +82,9 @@ async function getGameByIdAndAverageVotes(id) {
     averageScores,
   };
 
-  requested_data.push(data);
+  //requested_data.push(data);
 
-  return requested_data;
+  return data;//requested_data;
 }
 
 /**
@@ -124,11 +125,24 @@ async function addGame(game) {
  */
 async function editGame(id, game) {
   await client.connect();
+
+  const previousGame = await getGameById(id);
+
   await GamesCollection.updateOne(
     { _id: new ObjectId(id) },
     { $set: { ...game } }
   );
+
   const editedGame = await getGameById(id);
+
+  const hasNewImage =
+    previousGame?.background_image &&
+    previousGame.background_image !== editedGame.background_image;
+
+  if (hasNewImage) {
+    deleteImageFile(previousGame.background_image);
+  }
+
   return editedGame;
 }
 
@@ -143,6 +157,11 @@ async function editGame(id, game) {
 async function deleteGame(id) {
   await client.connect();
   const deletedGame = await getGameById(id);
+
+  if (deletedGame?.background_image) {
+    await deleteImageFile(deletedGame.background_image);
+  }
+
   await GamesCollection.deleteOne({ _id: new ObjectId(id) });
   return deletedGame;
 }

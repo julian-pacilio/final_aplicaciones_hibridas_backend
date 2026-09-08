@@ -50,7 +50,7 @@ async function findVotesByJudge(idJudge) {
 
   for (let vote of votes) {
     const data = {
-      game_name: vote.game.name,
+      game: vote.game,
       gameplay: vote.gameplay,
       art: vote.art,
       sound: vote.sound,
