@@ -2,8 +2,10 @@ import { db, client } from "./mongo.js";
 const AccountsCollection = db.collection("accounts");
 const TokensCollection = db.collection("tokens");
 const JudgesCollection = db.collection("judges");
+const PasswordResetsCollection = db.collection("password_resets"); 
 
 import { passwordHash, verifyPassword } from "../helpers/password.js";
+import { sendPasswordResetCode } from "../helpers/mailer.js"; 
 import Jwt from "jsonwebtoken";
 
 /**
@@ -123,10 +125,68 @@ async function validateAccountExistance(email) {
   }
 }
 
+
+/**
+ * Genera un código de 6 dígitos, lo guarda con expiración y lo envía por mail.
+ * @param {string} email - Email de la cuenta que pidió el reseteo.
+ */
+async function requestPasswordReset(email) {
+  await client.connect();
+
+  const account = await AccountsCollection.findOne({ email });
+
+  if (!account) {
+    return { message: "Si el email está registrado, vas a recibir un código en tu casilla" };
+  }
+
+  const code = Math.floor(100000 + Math.random() * 900000).toString();
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+  await PasswordResetsCollection.deleteMany({ email });
+  await PasswordResetsCollection.insertOne({ email, code, expiresAt });
+
+  await sendPasswordResetCode(email, code);
+
+  return { message: "Si el email está registrado, vas a recibir un código en tu casilla" };
+}
+
+/**
+ * Valida el código y actualiza la contraseña de la cuenta.
+ * @param {object} data - { email, code, password }
+ */
+async function resetPassword({ email, code, password }) {
+  await client.connect();
+
+  const resetEntry = await PasswordResetsCollection.findOne({ email, code });
+
+  if (!resetEntry) {
+    throw { message: "El código es inválido" };
+  }
+
+  if (resetEntry.expiresAt < new Date()) {
+    await PasswordResetsCollection.deleteOne({ _id: resetEntry._id });
+    throw { message: "El código expiró, solicitá uno nuevo" };
+  }
+
+  const hashedPassword = await passwordHash(password);
+
+  await AccountsCollection.updateOne(
+    { email },
+    { $set: { password: hashedPassword } }
+  );
+
+  // El código ya se usó: se borra para que no pueda reutilizarse
+  await PasswordResetsCollection.deleteOne({ _id: resetEntry._id });
+
+  return { message: "Contraseña actualizada con éxito" };
+}
+
 export default {
   createAccount,
   createSession,
   deleteSession,
   validateAccountExistance,
   verifyToken,
+  requestPasswordReset,
+  resetPassword
 };

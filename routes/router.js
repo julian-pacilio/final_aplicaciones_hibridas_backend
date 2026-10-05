@@ -21,6 +21,8 @@ import {
   validateEmailIsNotRegistered,
   validateEmailIsRegistered,
   validateAccountLogin,
+  validateForgotPassword,
+  validateResetPassword
 } from "../middleware/accounts.js";
 
 import { verifySession } from "../middleware/accounts.js";
@@ -76,6 +78,15 @@ route
     AccountsController.login
   )
   .delete([verifySession], AccountsController.logout);
+
+  // Password Reset
+  route
+  .route("/auth/password/forgot")
+  .post([validateForgotPassword], AccountsController.forgotPassword);
+
+  route
+    .route("/auth/password/reset")
+    .post([validateResetPassword], AccountsController.resetPassword);
 
   // Uploads
 route

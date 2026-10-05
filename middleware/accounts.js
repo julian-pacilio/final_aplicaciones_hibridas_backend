@@ -1,4 +1,4 @@
-import { AccountSchema, AccountLoginSchema } from "../schemas/accounts.js";
+import { AccountSchema, AccountLoginSchema, ForgotPasswordSchema, ResetPasswordSchema } from "../schemas/accounts.js";
 import AccountsService from "../services/accounts.js";
 
 export function validateAccountCreate(req, res, next) {
@@ -84,4 +84,38 @@ export function verifySession(req, res, next) {
     .catch(() => {
       return res.status(401).json({ message: "El Token no es válido"})
     })
+}
+
+export function validateForgotPassword(req, res, next) {
+  ForgotPasswordSchema.validate(req.body, {
+    stripUnknown: true,
+    abortEarly: false,
+  })
+    .then(function (data) {
+      req.body = data;
+      next();
+    })
+    .catch(function (err) {
+      res.status(400).json({
+        message: `Error en el esquema`,
+        error: err.errors,
+      });
+    });
+}
+
+export function validateResetPassword(req, res, next) {
+  ResetPasswordSchema.validate(req.body, {
+    stripUnknown: true,
+    abortEarly: false,
+  })
+    .then(function (data) {
+      req.body = data;
+      next();
+    })
+    .catch(function (err) {
+      res.status(400).json({
+        message: `Error en el esquema`,
+        error: err.errors,
+      });
+    });
 }

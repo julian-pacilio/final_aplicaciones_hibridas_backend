@@ -39,9 +39,36 @@ async function logout(req, res) {
     });
 }
 
+async function forgotPassword(req, res) {
+  return AccountsService.requestPasswordReset(req.body.email)
+    .then(function (result) {
+      res.status(200).json(result);
+    })
+    .catch(function (err) {
+      res.status(500).json({
+        message: `Error al solicitar el reseteo de contraseña`,
+        error: err,
+      });
+    });
+}
+
+async function resetPassword(req, res) {
+  return AccountsService.resetPassword(req.body)
+    .then(function (result) {
+      res.status(200).json(result);
+    })
+    .catch(function (err) {
+      res.status(400).json({
+        message: err.message || `Error al restablecer la contraseña`,
+        error: err,
+      });
+    });
+}
 
 export default {
   createAccount,
   login,
-  logout
+  logout,
+  forgotPassword,
+  resetPassword
 };
