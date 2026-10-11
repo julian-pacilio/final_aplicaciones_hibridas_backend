@@ -4,6 +4,7 @@ import GamesController from "../controllers/games.js";
 import GameVotesController from "../controllers/gamesVotes.js";
 import AccountsController from "../controllers/accounts.js";
 import UploadsController from "../controllers/uploads.js"; 
+import JudgesController from "../controllers/judges.js"; 
 
 import {
   validateGameCreate,
@@ -59,8 +60,12 @@ route
     ],
     GameVotesController.addVote
   );
+route
+  .route("/judges")
+  .get(JudgesController.getAllJudges)
 
 route.route("/judges/:idJudge/votes").get(GameVotesController.getVotesByJudge);
+route.route("/judges/:idJudge").get(JudgesController.getJudgeById);
 
 // Register
 route
