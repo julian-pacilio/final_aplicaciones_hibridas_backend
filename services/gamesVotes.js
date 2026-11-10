@@ -5,6 +5,14 @@ const GamesVotesCollection = db.collection("games_votes");
 import JudgesService from "../services/judges.js";
 import GamesService from "../services/games.js";
 
+async function getAllVotes(limit = 0) {
+  await client.connect();
+  return GamesVotesCollection.find()
+    .sort({ _id: -1 })
+    .limit(limit)
+    .toArray();
+}
+
 /**
  * Obtiene los votos de un juego por su ID.
  * @param {string} idGame - ID del juego.
@@ -155,6 +163,7 @@ async function checkPreviousJudgeVoteExists(data) {
 }
 
 export default {
+  getAllVotes,
   findVotesByGame,
   findVotesByJudge,
   addVote,

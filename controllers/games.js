@@ -1,11 +1,14 @@
 import GamesService from "../services/games.js";
 
 function getAllGames(req, res) {
-  GamesService.getAllGames(req.query)
+  const limit = parseInt(req.query.limit);
+
+  GamesService.getAllGames(req.query, limit)
     .then(function (games) {
       res.status(200).json(games);
     })
     .catch(function (err) {
+      console.log(err);
       res.status(404).json({ 
         message: `No se encuentran los juegos`, 
         error: err 
@@ -29,7 +32,6 @@ function getGamesByEdition(req, res) {
 }
 
 function getGameById(req, res) {
-  const { idGame } = req.params;
 
   GamesService.getGameById(idGame)
     .then(function (game) {

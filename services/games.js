@@ -12,10 +12,15 @@ import deleteImageFile from "../helpers/images.js";
  * @param {{}} [filter={}]  Filter Object
  * @returns { Array }   Games Array
  */
-async function getAllGames(filter = {}) {
+
+
+async function getAllGames(filter = {}, limit = 0) {
   await client.connect();
   const filterMongo = filterQueryToMongo(filter);
-  return GamesCollection.find(filterMongo).toArray();
+  return GamesCollection.find(filterMongo)
+    .sort({ _id: -1 })
+    .limit(limit)
+    .toArray();
 }
 
 /**

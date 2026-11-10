@@ -37,6 +37,10 @@ route
   .post([verifySession, validateGameCreate], GamesController.addGame);
 
 route
+  .route("/games/votes")
+  .get(GameVotesController.getAllVotes)
+
+route
   .route("/games/:idGame")
   .get([],GamesController.getGameById)
   .patch([verifySession, validateGameIdExists], GamesController.editGame)

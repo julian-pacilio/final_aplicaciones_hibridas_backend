@@ -1,5 +1,21 @@
 import GamesVotesService from "../services/gamesVotes.js";
 
+function getAllVotes(req, res) {
+  const limit = parseInt(req.query.limit);
+
+  GamesVotesService.getAllVotes(limit)
+    .then(function (votes) {
+      res.status(200).json(votes);
+    })
+    .catch(function (err) {
+      console.log(err);
+      res.status(404).json({ 
+        message: `No se encuentran los votos`, 
+        error: err 
+      });
+    });
+}
+
 function getVotesByGame(req, res) {
   const { idGame } = req.params;
 
@@ -46,6 +62,7 @@ async function addVote(req, res) {
 }
 
 export default {
+  getAllVotes,
   getVotesByGame,
   getVotesByJudge,
   addVote,
