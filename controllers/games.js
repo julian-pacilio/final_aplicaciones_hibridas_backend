@@ -33,6 +33,8 @@ function getGamesByEdition(req, res) {
 
 function getGameById(req, res) {
 
+  const { idGame } = req.params;
+
   GamesService.getGameById(idGame)
     .then(function (game) {
       return res.status(200).json(game);

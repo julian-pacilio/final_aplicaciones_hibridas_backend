@@ -33,8 +33,9 @@ function getVotesByGame(req, res) {
 
 function getVotesByJudge(req, res) {
   const { idJudge } = req.params;
+  const limit = parseInt(req.query.limit);
 
-  GamesVotesService.findVotesByJudge(idJudge)
+  GamesVotesService.findVotesByJudge(idJudge, limit)
     .then(function (votes) {
       res.status(200).json(votes);
     })

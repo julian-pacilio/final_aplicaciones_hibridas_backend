@@ -47,12 +47,15 @@ async function findVotesByGame(idGame) {
  * @param {string} idJudge - ID del juez.
  * @returns {Array} - Nombre del juego e información del voto.
  */
-async function findVotesByJudge(idJudge) {
+async function findVotesByJudge(idJudge, limit = 0) {
   await client.connect();
 
   const votes = await GamesVotesCollection.find({
     "judge._id": new ObjectId(idJudge),
-  }).toArray();
+  })
+  .sort({ _id: -1 })
+  .limit(limit)
+  .toArray();
 
   let requested_data = [];
 
