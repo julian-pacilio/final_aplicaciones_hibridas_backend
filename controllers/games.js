@@ -8,7 +8,6 @@ function getAllGames(req, res) {
       res.status(200).json(games);
     })
     .catch(function (err) {
-      console.log(err);
       res.status(404).json({ 
         message: `No se encuentran los juegos`, 
         error: err 
@@ -25,7 +24,7 @@ function getGamesByEdition(req, res) {
     })
     .catch(function (err) {
       res.status(404).json({
-        message: `No se encuentran los juegos de la Jam Edición #${edition}`,
+        message: `No se encontraron los juegos de la Jam Edición`,
         error: err,
       });
     });
@@ -69,7 +68,7 @@ async function addGame(req, res) {
     })
     .catch(function (err) {
       res.status(500).json({ 
-        message: `Error al añadir el juego `, 
+        message: `Ocurrio un error al añadir el juego`, 
         error: err 
       });
     });

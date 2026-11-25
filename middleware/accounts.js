@@ -97,7 +97,7 @@ export function validateForgotPassword(req, res, next) {
     })
     .catch(function (err) {
       res.status(400).json({
-        message: `Error en el esquema`,
+        message: err.errors,
         error: err.errors,
       });
     });
@@ -114,7 +114,7 @@ export function validateResetPassword(req, res, next) {
     })
     .catch(function (err) {
       res.status(400).json({
-        message: `Error en el esquema`,
+        message: err.errors,
         error: err.errors,
       });
     });

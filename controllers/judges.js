@@ -7,7 +7,7 @@ function getAllJudges(req, res) {
     })
     .catch(function (err) {
       res.status(404).json({ 
-        message: `No se encuentran los jueces`, 
+        message: `Ocurrio un error en la carga de los jueces`, 
         error: err 
       });
     });
