@@ -3,7 +3,9 @@
     "$oid": "654031009217df944e3e4061"
   },
   "name": "Space Adventures",
+  "description": "Embárcate en una odisea intergaláctica explorando planetas inexplorados, enfrentando anomalías cósmicas y descubriendo civilizaciones alienígenas en los confines del universo.",
   "genre": "Ciencia Ficción",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -19,14 +21,16 @@
     }
   ],
   "edition": "2023",
-  "totalScore": 118
+  "totalScore": 0
 },
 {
   "_id": {
     "$oid": "654031009217df944e3e4062"
   },
   "name": "Fantasy Quest",
+  "description": "Reúne a tu grupo de héroes y adéntrate en tierras mágicas repletas de dragones, hechizos antiguos y mazmorras ocultas para restaurar la paz en el reino.",
   "genre": "Fantasía",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -42,14 +46,16 @@
     }
   ],
   "edition": "2023",
-  "totalScore": 40
+  "totalScore": 0
 },
 {
   "_id": {
     "$oid": "654031009217df944e3e4063"
   },
   "name": "Zombie Survival",
+  "description": "Lucha por sobrevivir en una ciudad devastada por un brote viral, gestionando recursos escasos y fortificando refugios contra hordas implacables de infectados.",
   "genre": "Survival Horror",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -72,7 +78,9 @@
     "$oid": "654031009217df944e3e4064"
   },
   "name": "Racing Rivals",
+  "description": "Pisa el acelerador a fondo en circuitos urbanos clandestinos, personaliza tu vehículo al límite y desafía a los corredores más temidos de la ciudad.",
   "genre": "Carreras",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -95,7 +103,9 @@
     "$oid": "654031009217df944e3e4065"
   },
   "name": "Medieval Conquest",
+  "description": "Forja alianzas, levanta fortalezas inexpugnables y lidera tus ejércitos en batallas tácticas para expandir tu imperio durante la Edad Media.",
   "genre": "Estrategia",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -118,7 +128,9 @@
     "$oid": "654031009217df944e3e4066"
   },
   "name": "Mystery Mansion",
+  "description": "Explora los pasillos secretos de una mansión victoriana llena de acertijos ingeniosos, pistas ocultas y el enigma de una desaparición sin resolver.",
   "genre": "Aventura",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -141,7 +153,9 @@
     "$oid": "654031009217df944e3e4067"
   },
   "name": "Cyberpunk Chronicles",
+  "description": "Sumérgete en una metrópolis futurista dominada por megacorporaciones, hackea sistemas de seguridad y sobrevive en los bajos fondos bañados en neón.",
   "genre": "Ciencia Ficción",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -164,7 +178,9 @@
     "$oid": "654031009217df944e3e4068"
   },
   "name": "Pirate Plunder",
+  "description": "Iza las velas y navega por mares traicioneros en busca de mapas perdidos, tesoros malditos y épicos abordajes contra flotas rivales.",
   "genre": "Aventura",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -187,7 +203,9 @@
     "$oid": "654031009217df944e3e4069"
   },
   "name": "Warrior's Legacy",
+  "description": "Empuña armas legendarias y cumple una antigua profecía enfrentando a señores oscuros y bestias mitológicas para honrar el linaje de tus ancestros.",
   "genre": "Fantasía",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -210,7 +228,9 @@
     "$oid": "654031009217df944e3e406a"
   },
   "name": "Apocalyptic Escape",
+  "description": "Ábrete paso a través de un mundo en ruinas tras el colapso global, evitando peligros letales y buscando la última zona segura antes de que sea tarde.",
   "genre": "Survival Horror",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -233,7 +253,9 @@
     "$oid": "654031009217df944e3e406b"
   },
   "name": "Deep Sea Explorer",
+  "description": "Desciende a las profundidades abisales del océano para investigar ruinas sumergidas, catalogar fauna marina desconocida y desvelar los secretos del fondo marino.",
   "genre": "Aventura",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -256,7 +278,9 @@
     "$oid": "654031009217df944e3e406c"
   },
   "name": "Galactic Conquest",
+  "description": "Comanda flotas estelares masivas, coloniza sistemas solares y negocia tratados diplomáticos para dominar la galaxia en una guerra sin cuartel.",
   "genre": "Ciencia Ficción",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -279,7 +303,9 @@
     "$oid": "654031009217df944e3e406d"
   },
   "name": "Wild West Shootout",
+  "description": "Recorre las polvorientas tierras de la frontera, atrapa forajidos buscados y participa en intensos duelos al atardecer bajo la ley del revólver.",
   "genre": "Aventura",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -302,7 +328,9 @@
     "$oid": "654031009217df944e3e406e"
   },
   "name": "Epic Racing Challenge",
+  "description": "Compite en un campeonato internacional de alta velocidad con condiciones climáticas extremas, curvas imposibles y adrenalina pura en cada vuelta.",
   "genre": "Carreras",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -325,7 +353,9 @@
     "$oid": "654031009217df944e3e406f"
   },
   "name": "Fantasy Realm",
+  "description": "Explora un vasto mundo abierto lleno de bosques encantados, criaturas místicas y reinos en conflicto donde cada decisión moldea el destino de la magia.",
   "genre": "Fantasía",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -348,7 +378,9 @@
     "$oid": "654031009217df944e3e4070"
   },
   "name": "Haunted Mansion",
+  "description": "Sobrevive una noche atrapado en una residencia maldita, escapando de espectros vengativos mientras descubres la oscura historia detrás de sus muros.",
   "genre": "Survival Horror",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -371,7 +403,9 @@
     "$oid": "654031009217df944e3e4071"
   },
   "name": "Lost in Space",
+  "description": "A la deriva tras un fallo crítico en tu nave, deberás reparar los sistemas vitales, recolectar chatarra espacial y encontrar el camino de regreso a casa.",
   "genre": "Ciencia Ficción",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -394,7 +428,9 @@
     "$oid": "654031009217df944e3e4072"
   },
   "name": "Ancient Kingdoms",
+  "description": "Despierta el poder de civilizaciones olvidadas, descifra runas ancestrales y defiende los antiguos tronos frente a una amenaza que resurge de las sombras.",
   "genre": "Fantasía",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -417,7 +453,9 @@
     "$oid": "654031009217df944e3e4073"
   },
   "name": "Ghostly Encounters",
+  "description": "Investiga fenómenos paranormales en pueblos abandonados utilizando equipo especializado para comunicarte con espíritus y resolver casos sobrenaturales.",
   "genre": "Aventura",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
@@ -440,7 +478,9 @@
     "$oid": "654031009217df944e3e4074"
   },
   "name": "Desert Racing Madness",
+  "description": "Domina vehículos todoterreno modificados a través de dunas gigantescas, cañones rocosos y tormentas de arena en una carrera extrema sin reglas.",
   "genre": "Carreras",
+  "background_image": "example.jpg",
   "members": [
     {
       "id": 1,
